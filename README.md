@@ -6,8 +6,8 @@
 
 ### -- 1. Count Number of Movies vs TV Shows
 
-´´´sql
+```sql
 SELECT type, COUNT (*) as content
 FROM Netflix
 GROUP BY type
-´´´
+```
