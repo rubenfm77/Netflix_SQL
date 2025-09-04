@@ -173,7 +173,7 @@ SELECT
 	category,
 	COUNT(*) as Total_content
 
-```
 FROM New_Table
 GROUP BY 1
 ORDER BY 2 DESC
+```
