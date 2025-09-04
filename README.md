@@ -4,7 +4,9 @@
 
 ## Objective
 
-### -- 1. Count Number of Movies vs TV Shows
+The idea is to do some simple SQL queries answering some questions. Check out the original work from Najirh
+
+### 1. Count Number of Movies vs TV Shows
 
 ```sql
 SELECT type, COUNT (*) as content
