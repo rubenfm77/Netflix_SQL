@@ -4,7 +4,7 @@
 
 ## Objective
 
-The idea is to do some simple SQL queries answering some questions. Check out the original work from Najirh
+The idea is to do some simple SQL queries answering some questions.
 
 ### 1. Count Number of Movies vs TV Shows
 
