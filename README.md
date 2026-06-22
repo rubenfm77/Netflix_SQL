@@ -1,4 +1,4 @@
-# Netflix Catalog Analysis — SQL
+# 🎬 Netflix Catalog Analysis — SQL
 
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14+-blue?logo=postgresql)](https://www.postgresql.org/)
 [![Dataset](https://img.shields.io/badge/Dataset-Netflix%20Titles-red?logo=netflix)](https://www.kaggle.com/datasets/shivamb/netflix-shows)
@@ -9,7 +9,7 @@
 
 ---
 
-## Dataset
+## 🗂️ Dataset
 
 `netflix_titles.csv` — Netflix catalog snapshot with columns:
 
@@ -17,7 +17,7 @@
 
 ---
 
-## Queries
+## 🔍 Queries
 
 ### 1. Content mix: Movies vs TV Shows
 
@@ -171,43 +171,43 @@ ORDER BY 2 DESC
 
 ---
 
-## Conclusions
+## 🎯 Conclusions
 
-**Movies dominate but TV Shows are growing**
+**Movies dominate but TV Shows drive longer engagement**
 
-The catalog contains significantly more Movies than TV Shows, but TV Shows drive longer engagement — a TV show viewer returns for multiple episodes while a movie viewer is done in 90 minutes. The content mix reflects Netflix's original movie-library roots, before the streaming model pivoted heavily toward serialised content.
+The catalog contains significantly more Movies than TV Shows, but TV Shows create stickier viewing behaviour — a TV show viewer returns for multiple episodes while a movie viewer is done in 90 minutes. The content mix reflects Netflix's original movie-library roots, before the streaming model pivoted heavily toward serialised content.
 
 **The US leads production by a wide margin; India is the clear #2**
 
-The top-5 country query confirms the US as the single largest content producer by volume, with India as a distant but substantial second — driven by Bollywood and regional-language productions. The Indian catalog also shows consistent year-over-year growth, making it one of the fastest-expanding national libraries on the platform.
+The top-5 country query confirms the US as the single largest content producer by volume, with India as a distant but substantial second — driven by Bollywood and regional-language productions. The Indian catalog shows consistent year-over-year growth, making it one of the fastest-expanding national libraries on the platform.
 
 **Documentaries are the largest single genre**
 
-`listed_in` genre analysis puts Documentaries at the top of the genre count, ahead of Dramas and Comedies. This is counterintuitive — it reflects Netflix's strategy of licensing large documentary back-catalogs (cheaper per title than scripted content) to pad the library breadth.
+`listed_in` genre analysis puts Documentaries at the top of the genre count, ahead of Dramas and Comedies. This is counterintuitive — it reflects Netflix's strategy of licensing large documentary back-catalogs (cheaper per title than scripted content) to pad library breadth.
 
 **Rating profiles differ sharply by content type**
 
-The most common rating for TV Shows is **TV-MA** (mature audiences); for Movies it is **R** or **TV-MA** depending on the snapshot year. Family-friendly content (G, PG, TV-G, TV-Y) makes up a much smaller share of the catalog than the adult-oriented tiers — consistent with Netflix's core demographic skewing toward adults 18–44.
+The most common rating for TV Shows is **TV-MA** (mature audiences); for Movies it is **R** or **TV-MA**. Family-friendly content (G, PG, TV-G, TV-Y) makes up a much smaller share of the catalog than adult-oriented tiers — consistent with Netflix's core demographic skewing toward adults 18–44.
 
 **A non-trivial share of content has no director listed**
 
-The `NULL` director query returns a meaningful number of titles — primarily talk shows, stand-up specials, and licensed content where the "director" field was not populated in the source catalog. This is a data-quality observation, not a content editorial choice.
+The `NULL` director query returns a meaningful number of titles — primarily talk shows, stand-up specials, and licensed content where the field was not populated in the source catalog. This is a data-quality observation, not an editorial choice.
 
-**Keyword-based classification reveals the violent content proportion**
+**Keyword-based classification reveals the content safety distribution**
 
-The description-based classification (Query 15) shows the split between content containing keywords like "kill" or "violence" vs. the rest. While crude, this kind of keyword filter is a common first-pass content safety tool before more sophisticated NLP is applied.
+The description-based classification (Query 15) shows the split between content with violent keywords vs. the rest. While crude, this kind of keyword filter is a common first-pass content safety tool before more sophisticated NLP is applied.
 
-**Key SQL techniques demonstrated**
+**🛠️ Key SQL techniques demonstrated**
 
-- `UNNEST(STRING_TO_ARRAY(...))` to explode multi-value comma-separated fields (genres, countries, cast) into rows
-- `RANK() OVER (PARTITION BY ...)` for "top N per group" patterns
-- `LAG` / window aggregates for time-series analysis
-- `ILIKE` for case-insensitive text search across large catalogs
-- CTE + `CASE WHEN` for classification and pivot-style transformations
+- `UNNEST(STRING_TO_ARRAY(...))` — explode multi-value comma-separated fields (genres, countries, cast) into rows
+- `RANK() OVER (PARTITION BY ...)` — "top N per group" patterns
+- `ILIKE` — case-insensitive text search across large catalogs
+- `SPLIT_PART` + `::numeric` cast — parse duration strings for comparison
+- CTE + `CASE WHEN` — classification and conditional aggregation
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Tool | Use |
 |---|---|
